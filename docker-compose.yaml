@@ -1,0 +1,100 @@
+version: '3.7'
+
+services:
+  mongo1:
+    container_name: mongo1
+    image: mongo:5
+    command: mongod --replSet rs0
+    ports:
+      - 27017:27017
+    restart: always
+    volumes:
+      - dataMongo01:/data/db
+    networks:
+      - myNetwork
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+        reservations:
+          memory: 512m
+
+  mongo2:
+    container_name: mongo2
+    image: mongo:5
+    command: mongod --replSet rs0
+    ports:
+      - 27018:27017
+    restart: always
+    volumes:
+      - dataMongo02:/data/db
+    networks:
+      - myNetwork
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+        reservations:
+          memory: 512m
+
+  mongo3:
+    container_name: mongo3
+    image: mongo:5
+    command: mongod --replSet rs0
+    ports:
+      - 27019:27017
+    restart: always
+    volumes:
+      - dataMongo03:/data/db
+    networks:
+      - myNetwork
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+        reservations:
+          memory: 512m
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://mongo1:27017,mongo2:27017,mongo3:27017/CountryInfo?&replicaSet=rs0
+      - ME_CONFIG_BASICAUTH_USERNAME=mexpress
+      - ME_CONFIG_BASICAUTH_PASSWORD=mexpress
+    restart: always
+    networks:
+      - myNetwork
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256m
+
+  country-info:
+    container_name: country-info
+    hostname: country-info
+    image: country-info
+    networks:
+      - myNetwork
+    depends_on:
+      - mongo1
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256m
+    ports:
+      - 8080:8080
+
+networks:
+  myNetwork:
+
+volumes:
+  dataMongo01:
+  dataMongo02:
+  dataMongo03:
+

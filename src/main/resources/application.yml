@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+country-info:
+  database:
+    mongo:
+      uri: mongodb://localhost:27017/CountryInfo
+
+spring:
+  application:
+    name: country-info
+  data:
+    mongodb:
+      database: CountryInfo
+      uri: ${country-info.database.mongo.uri}
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+
+country-info:
+  database:
+    mongo:
+      uri: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/CountryInfo?&replicaSet=rs0
+
