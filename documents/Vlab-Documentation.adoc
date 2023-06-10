@@ -1,8 +1,8 @@
+= MongoDB Replica Set with Docker
+
 :toc:
 :toc-title: Table of Contents
 :toclevels: 3
-
-= MongoDB Replica Set with Docker
 
 [[introduction]]
 == Introduction
@@ -87,8 +87,8 @@ Mongo Express serves as a user-friendly web interface for MongoDB, allowing easy
 
 To run the vLab, follow these steps:
 
-==== 1. Build the Spring Boot App
-Before starting the vLab, you need to build the Spring Boot application JAR file. Make sure you have Maven and Docker installed on your system, and then execute the following command in the root directory of the project:
+==== 1. Build the Country Info Application
+Before starting the vLab, you need to build the Country Info application JAR file. Make sure you have Maven and Docker installed on your system, and then execute the following command in the root directory of the project:
 
 [source,bash]
 ----
