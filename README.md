@@ -1,3 +1,5 @@
+# MongoDB Replica Set with Docker
+
 <!-- Table of Contents -->
 ## Table of Contents
 - [Introduction](#introduction)
@@ -12,8 +14,6 @@
 - [Conclusion](#conclusion)
 
 <!-- Introduction -->
-# MongoDB Replica Set with Docker
-
 ## Introduction
 In this project, we have created a virtual lab (vLab) using Docker to set up a MongoDB Replica Set. A MongoDB Replica Set is a group of MongoDB servers that maintain the same data set, providing high availability and data redundancy. Docker, a containerization platform, allows us to easily create and manage the MongoDB Replica Set environment.
 
