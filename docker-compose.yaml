@@ -6,7 +6,7 @@ services:
     image: mongo:5
     command: mongod --replSet rs0
     ports:
-      - 27017:27017
+      - "27017:27017"
     restart: always
     volumes:
       - dataMongo01:/data/db
@@ -15,16 +15,18 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1g
-        reservations:
+          cpus: '0.5'
           memory: 512m
+        reservations:
+          cpus: '0.2'
+          memory: 256m
 
   mongo2:
     container_name: mongo2
     image: mongo:5
     command: mongod --replSet rs0
     ports:
-      - 27018:27017
+      - "27018:27017"
     restart: always
     volumes:
       - dataMongo02:/data/db
@@ -33,16 +35,18 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1g
-        reservations:
+          cpus: '0.5'
           memory: 512m
+        reservations:
+          cpus: '0.2'
+          memory: 256m
 
   mongo3:
     container_name: mongo3
     image: mongo:5
     command: mongod --replSet rs0
     ports:
-      - 27019:27017
+      - "27019:27017"
     restart: always
     volumes:
       - dataMongo03:/data/db
@@ -51,14 +55,16 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1g
-        reservations:
+          cpus: '0.5'
           memory: 512m
+        reservations:
+          cpus: '0.2'
+          memory: 256m
 
   mongo-express:
     image: mongo-express
     ports:
-      - 8081:8081
+      - "8081:8081"
     environment:
       - ME_CONFIG_MONGODB_URL=mongodb://mongo1:27017,mongo2:27017,mongo3:27017/CountryInfo?&replicaSet=rs0
       - ME_CONFIG_BASICAUTH_USERNAME=mexpress
@@ -69,8 +75,10 @@ services:
     deploy:
       resources:
         limits:
+          cpus: '0.25'
           memory: 512M
         reservations:
+          cpus: '0.1'
           memory: 256m
 
   country-info:
@@ -84,11 +92,13 @@ services:
     deploy:
       resources:
         limits:
+          cpus: '0.25'
           memory: 512M
         reservations:
+          cpus: '0.1'
           memory: 256m
     ports:
-      - 8080:8080
+      - "8080:8080"
 
 networks:
   myNetwork:
