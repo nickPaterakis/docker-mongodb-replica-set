@@ -2,7 +2,7 @@
 FROM openjdk:17-jdk-slim
 
 # Set an argument for the JAR file location
-ARG JAR_FILE=target/*.jar
+ARG JAR_FILE=jar-file/*.jar
 
 # Set the working directory to /app
 WORKDIR /app
